@@ -80,7 +80,7 @@ serviceMaps:
             - jsonPath: $.Asset.acquisitionCost
             - jsonPath: $.Asset.bookValue
             - jsonPath: $.Asset.lifeOfAsset
-            - jsonPath: $.Asset.modeofpossessionoracquisition
+            - jsonPath: $.Asset.modeOfPossessionorAcquisition
             - jsonPath: $.Asset.assetType
             - jsonPath: $.Asset.assetUsage
             - jsonPath: $.Asset.assetStatus
@@ -229,7 +229,7 @@ serviceMaps:
             - jsonPath: $.Asset.acquisitionCost
             - jsonPath: $.Asset.bookValue
             - jsonPath: $.Asset.lifeOfAsset
-            - jsonPath: $.Asset.modeofpossessionoracquisition
+            - jsonPath: $.Asset.modeOfPossessionorAcquisition
             - jsonPath: $.Asset.assetType
             - jsonPath: $.Asset.assetUsage
             - jsonPath: $.Asset.assetStatus
