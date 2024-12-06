@@ -38,8 +38,8 @@ serviceMaps:
                         purchaseCost,
                         acquisitionCost,
                         bookValue,
-                        lifeofasset,
-                        modeofpossessionoracquisition,
+                        lifeOfAsset,
+                        modeOfPossessionOrAcquisition,
                         assetType,
                         assetUsage,
                         assetStatus
@@ -191,8 +191,8 @@ serviceMaps:
                     purchaseCost = ?,
                     acquisitionCost = ?,
                     bookValue = ?,
-                    lifeofasset = ?,
-                    modeofpossessionoracquisition = ?,
+                    lifeOfAsset = ?,
+                    modeOfPossessionOrAcquisition = ?,
                     assetType = ?,
                     assetUsage = ?,
                     assetStatus = ?
