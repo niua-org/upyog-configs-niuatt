@@ -256,6 +256,14 @@ serviceMaps:
             - jsonPath: $.Asset.auditDetails.createdTime
             - jsonPath: $.Asset.auditDetails.lastModifiedTime
 
+            - jsonPath: $.Asset.documents.*.documentType
+            - jsonPath: $.Asset.documents.*.fileStoreId
+            - jsonPath: $.Asset.documents.*.docDetails
+              type: JSON
+              dbType: JSONB
+            - jsonPath: $.Asset.auditDetails.lastModifiedBy
+            - jsonPath: $.Asset.auditDetails.lastModifiedTime
+
     - version: 1.0
       description: save assignment details in EG_Asset_assignmentdetails table
       fromTopic: save-asset-assignmentdetails
