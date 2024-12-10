@@ -264,7 +264,7 @@
                 "style": "receipt-table-value-down"
               },
               {
-                "text": "{{totalAmount}}",
+                "text": "₹{{totalAmount}}",
                 "border": [false, true, false, true],
                 "bold": true,
                 "style": "receipt-table-value-down"
