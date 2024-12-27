@@ -7,7 +7,7 @@ serviceMaps:
       isTransaction: true
       queryMaps:
         - query: |
-            INSERT INTO eg_asset_depreciationdetails (
+            INSERT INTO eg_asset_depreciation_details (
               assetId,
               fromDate,
               toDate,
@@ -15,8 +15,9 @@ serviceMaps:
               bookValue,
               rate,
               oldBookValue,
+              createdAt,
               updatedAt
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT (assetId, fromDate, toDate) DO NOTHING;
           basePath: DepreciationDetail
           jsonMaps:
@@ -27,6 +28,7 @@ serviceMaps:
             - jsonPath: $.DepreciationDetail.bookValue
             - jsonPath: $.DepreciationDetail.rate
             - jsonPath: $.DepreciationDetail.oldBookValue
+            - jsonPath: $.DepreciationDetail.createdAt
             - jsonPath: $.DepreciationDetail.updatedAt
 
     - version: 1.0
@@ -35,7 +37,7 @@ serviceMaps:
       isTransaction: true
       queryMaps:
         - query: |
-            INSERT INTO eg_asset_depreciationdetails (
+            INSERT INTO eg_asset_depreciation_details (
               assetId,
               fromDate,
               toDate,
@@ -43,8 +45,9 @@ serviceMaps:
               bookValue,
               rate,
               oldBookValue,
+              createdAt,
               updatedAt
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT (assetId, fromDate, toDate)
             DO UPDATE SET
               depreciationValue = EXCLUDED.depreciationValue,
@@ -61,4 +64,5 @@ serviceMaps:
             - jsonPath: $.DepreciationDetail.bookValue
             - jsonPath: $.DepreciationDetail.rate
             - jsonPath: $.DepreciationDetail.oldBookValue
+            - jsonPath: $.DepreciationDetail.createdAt
             - jsonPath: $.DepreciationDetail.updatedAt
