@@ -1,0 +1,68 @@
+serviceMaps:
+  serviceName: asset-calculator
+  mappings:
+    - version: 1.0
+      description: Persists depreciation details in eg_asset_depreciation_details table
+      fromTopic: save-depreciation
+      isTransaction: true
+      queryMaps:
+        - query: |
+            INSERT INTO eg_asset_depreciation_details (
+              assetId,
+              fromDate,
+              toDate,
+              depreciationValue,
+              bookValue,
+              rate,
+              oldBookValue,
+              createdAt,
+              updatedAt
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT (assetId, fromDate, toDate) DO NOTHING;
+          basePath: DepreciationDetail
+          jsonMaps:
+            - jsonPath: $.DepreciationDetail.assetId
+            - jsonPath: $.DepreciationDetail.fromDate
+            - jsonPath: $.DepreciationDetail.toDate
+            - jsonPath: $.DepreciationDetail.depreciationValue
+            - jsonPath: $.DepreciationDetail.bookValue
+            - jsonPath: $.DepreciationDetail.rate
+            - jsonPath: $.DepreciationDetail.oldBookValue
+            - jsonPath: $.DepreciationDetail.createdAt
+            - jsonPath: $.DepreciationDetail.updatedAt
+
+    - version: 1.0
+      description: Updates depreciation details in eg_asset_depreciation_details table
+      fromTopic: update-depreciation
+      isTransaction: true
+      queryMaps:
+        - query: |
+            INSERT INTO eg_asset_depreciation_details (
+              assetId,
+              fromDate,
+              toDate,
+              depreciationValue,
+              bookValue,
+              rate,
+              oldBookValue,
+              createdAt,
+              updatedAt
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT (assetId, fromDate, toDate)
+            DO UPDATE SET
+              depreciationValue = EXCLUDED.depreciationValue,
+              bookValue = EXCLUDED.bookValue,
+              rate = EXCLUDED.rate,
+              oldBookValue = EXCLUDED.oldBookValue,
+              updatedAt = EXCLUDED.updatedAt;
+          basePath: DepreciationDetail
+          jsonMaps:
+            - jsonPath: $.DepreciationDetail.assetId
+            - jsonPath: $.DepreciationDetail.fromDate
+            - jsonPath: $.DepreciationDetail.toDate
+            - jsonPath: $.DepreciationDetail.depreciationValue
+            - jsonPath: $.DepreciationDetail.bookValue
+            - jsonPath: $.DepreciationDetail.rate
+            - jsonPath: $.DepreciationDetail.oldBookValue
+            - jsonPath: $.DepreciationDetail.createdAt
+            - jsonPath: $.DepreciationDetail.updatedAt
