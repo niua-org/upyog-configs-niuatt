@@ -8,17 +8,19 @@ serviceMaps:
       queryMaps:
         - query: |
             INSERT INTO eg_asset_depreciation_details (
-              assetId,
-              fromDate,
-              toDate,
-              depreciationValue,
-              bookValue,
+              asset_id,
+              from_date,
+              to_date,
+              depreciation_value,
+              book_value,
               rate,
-              oldBookValue,
-              createdAt,
-              updatedAt
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT (assetId, fromDate, toDate) DO NOTHING;
+              old_book_value,
+              created_at,
+              updated_at,
+              created_by,
+              updated_by
+            ) VALUES (?, ?::date, ?::date, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT (asset_id, from_date, to_date) DO NOTHING;
           basePath: DepreciationDetail
           jsonMaps:
             - jsonPath: $.DepreciationDetail.assetId
@@ -30,6 +32,8 @@ serviceMaps:
             - jsonPath: $.DepreciationDetail.oldBookValue
             - jsonPath: $.DepreciationDetail.createdAt
             - jsonPath: $.DepreciationDetail.updatedAt
+            - jsonPath: $.DepreciationDetail.createdBy
+            - jsonPath: $.DepreciationDetail.updatedBy
 
     - version: 1.0
       description: Updates depreciation details in eg_asset_depreciation_details table
@@ -38,23 +42,25 @@ serviceMaps:
       queryMaps:
         - query: |
             INSERT INTO eg_asset_depreciation_details (
-              assetId,
-              fromDate,
-              toDate,
-              depreciationValue,
-              bookValue,
+              asset_id,
+              from_date,
+              to_date,
+              depreciation_value,
+              book_value,
               rate,
-              oldBookValue,
-              createdAt,
-              updatedAt
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT (assetId, fromDate, toDate)
+              old_book_value,
+              created_at,
+              updated_at,
+              created_by,
+              updated_by
+            ) VALUES (?, ?::date, ?::date, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT (asset_id, from_date, to_date)
             DO UPDATE SET
-              depreciationValue = EXCLUDED.depreciationValue,
-              bookValue = EXCLUDED.bookValue,
+              depreciation_value = EXCLUDED.depreciation_value,
+              book_value = EXCLUDED.book_value,
               rate = EXCLUDED.rate,
-              oldBookValue = EXCLUDED.oldBookValue,
-              updatedAt = EXCLUDED.updatedAt;
+              old_book_value = EXCLUDED.old_book_value,
+              updated_at = EXCLUDED.updated_at;
           basePath: DepreciationDetail
           jsonMaps:
             - jsonPath: $.DepreciationDetail.assetId
@@ -66,3 +72,5 @@ serviceMaps:
             - jsonPath: $.DepreciationDetail.oldBookValue
             - jsonPath: $.DepreciationDetail.createdAt
             - jsonPath: $.DepreciationDetail.updatedAt
+            - jsonPath: $.DepreciationDetail.createdBy
+            - jsonPath: $.DepreciationDetail.updatedBy
